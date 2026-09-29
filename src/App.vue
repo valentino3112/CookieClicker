@@ -18,7 +18,7 @@ const removePop = id => (pops.value = pops.value.filter(p => p.id !== id))
   <h1>Cookie Clicker</h1>
   <p>Cookies: {{ cookieCount }}</p>
   <p>Auto production: {{ production }} / sec</p>
-  <button class="big" @click="onClick">🍪</button>
+  <button class="big" aria-label="Click the cookie" @click="onClick">🍪</button>
   <span
     v-for="p in pops"
     :key="p.id"
@@ -34,7 +34,13 @@ const removePop = id => (pops.value = pops.value.filter(p => p.id !== id))
 
 <style>
 body { font-family: sans-serif; text-align: center; margin-top: 3rem; }
-.big { font-size: 2rem; padding: 1rem 2rem; margin: 1rem; }
+.big {
+  font-size: 6rem; margin: 1rem;
+  background: none; border: none; padding: 0; cursor: pointer;
+  transition: transform 0.05s;
+}
+.big:hover { transform: scale(1.05); }
+.big:active { transform: scale(0.95); }
 .pop {
   position: fixed; pointer-events: none; font-weight: bold;
   transform: translate(-50%, -50%);
