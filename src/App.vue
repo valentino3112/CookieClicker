@@ -1,5 +1,5 @@
 <script setup>
-import { cookieCount, production, upgradeCost, click, buyUpgrade } from './store.js'
+import { state, UPGRADES, cookieCount, production, costOf, click, buyUpgrade } from './store.js'
 </script>
 
 <template>
@@ -7,8 +7,10 @@ import { cookieCount, production, upgradeCost, click, buyUpgrade } from './store
   <p>Cookies: {{ cookieCount }}</p>
   <p>Auto production: {{ production }} / sec</p>
   <button class="big" @click="click">🍪 Click</button>
-  <p>Next upgrade: {{ upgradeCost }} cookies</p>
-  <button @click="buyUpgrade" :disabled="cookieCount < upgradeCost">Buy upgrade</button>
+  <div v-for="(u, id) in UPGRADES" :key="id">
+    <p>{{ u.name }} (+{{ u.production }}/sec) · owned: {{ state.owned[id] }}</p>
+    <button @click="buyUpgrade(id)" :disabled="cookieCount < costOf(id)">Buy for {{ costOf(id) }} cookies</button>
+  </div>
 </template>
 
 <style>
