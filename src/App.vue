@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { state, UPGRADES, cookieCount, production, costOf, click, buyUpgrade } from './store.js'
 
-// Floating "+1" popups (visual only, so they live here, not in the store)
+// make it more visual or something idk
 const pops = ref([])
 let nextId = 0
 
@@ -15,10 +15,10 @@ const removePop = id => (pops.value = pops.value.filter(p => p.id !== id))
 </script>
 
 <template>
-  <h1>🍪 Cookie Clicker</h1>
+  <h1>Cookie Clicker</h1>
   <p>Cookies: {{ cookieCount }}</p>
   <p>Auto production: {{ production }} / sec</p>
-  <button class="big" @click="onClick">🍪 Click</button>
+  <button class="big" @click="onClick">🍪</button>
   <span
     v-for="p in pops"
     :key="p.id"
